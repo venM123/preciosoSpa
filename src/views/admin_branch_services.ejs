@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin - Branch Services</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <%- include('partials/admin_nav') %>
+    <main class="page">
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Branches</p>
+          <h1>Branch Service Pricing</h1>
+          <p class="lead">Set per-branch pricing and availability for each service.</p>
+        </div>
+      </header>
+
+      <section class="page-card">
+        <form method="GET" action="/admin/branch-services">
+          <div class="form-grid">
+            <div>
+              <label>Branch</label>
+              <select name="branch_id" onchange="this.form.submit()">
+                <% branches.forEach(function(branch) { %>
+                  <option value="<%= branch.id %>" <%= Number(selectedBranchId) === Number(branch.id) ? "selected" : "" %>>
+                    <%= branch.name %>
+                  </option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section class="page-card">
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Category</th>
+                <th>Promo Set</th>
+                <th>Base Price</th>
+                <th>Branch Price</th>
+                <th>Status</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% services.forEach(function(s) { %>
+                <tr>
+                  <td><%= s.name %></td>
+                  <td><%= s.category %></td>
+                  <td><%= s.promo_set || "-" %></td>
+                  <td>$<%= s.base_price %></td>
+                  <td>
+                    <form method="POST" action="/admin/branch-services">
+                      <input type="hidden" name="branch_id" value="<%= selectedBranchId %>" />
+                      <input type="hidden" name="service_id" value="<%= s.id %>" />
+                      <input type="number" name="price_override" value="<%= s.price_override ?? "" %>" step="0.01" placeholder="Use base" />
+                  </td>
+                  <td>
+                      <select name="is_active">
+                        <option value="1" <%= s.is_active ? "selected" : "" %>>Active</option>
+                        <option value="0" <%= s.is_active ? "" : "selected" %>>Inactive</option>
+                      </select>
+                  </td>
+                  <td>
+                      <button type="submit">Save</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+
+
+

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <%- include('partials/admin_nav') %>
+    <main class="page">
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Precioso</p>
+          <h1>Admin Dashboard</h1>
+          <p class="lead">Oversee the booking experience with a refined, luxurious workspace.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="/admin/services/new">Create Service</a>
+          <a class="btn" href="/admin/bookings">View Bookings</a>
+        </div>
+      </header>
+
+      <section class="page-card">
+        <div class="card-grid">
+          <div class="card">
+            <h3>Services</h3>
+            <p>Update pricing, durations, and descriptions.</p>
+            <a class="btn" href="/admin/services">Manage Services</a>
+          </div>
+          <div class="card">
+            <h3>Bookings</h3>
+            <p>Confirm appointments and track client details.</p>
+            <a class="btn" href="/admin/bookings">Manage Bookings</a>
+          </div>
+          <div class="card">
+            <h3>New Service</h3>
+            <p>Add a luxury treatment to the menu.</p>
+            <a class="btn" href="/admin/services/new">Create Service</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+
+
+

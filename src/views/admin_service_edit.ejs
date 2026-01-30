@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edit Service</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <%- include('partials/admin_nav') %>
+    <main class="page">
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Services</p>
+          <h1>Edit Service</h1>
+          <p class="lead">Polish the details to keep the catalog flawless and on brand.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="/admin/services">Back to Services</a>
+        </div>
+      </header>
+
+      <section class="page-card">
+        <form method="POST" action="/admin/services/<%= service.id %>/edit" enctype="multipart/form-data">
+          <div class="form-grid">
+            <div>
+              <label>Service Name</label>
+              <input type="text" name="name" value="<%= service.name %>" required />
+            </div>
+            <div>
+              <label>Category</label>
+              <input type="text" name="category" value="<%= service.category %>" required />
+            </div>
+            <div>
+              <label>Service Image</label>
+              <% if (service.image_url) { %>
+                <img src="<%= service.image_url %>" alt="Service image" style="width: 120px; height: auto; border-radius: 12px; display: block; margin-top: 8px;" />
+              <% } %>
+              <input type="file" name="image" accept="image/*" />
+            </div>
+            <div>
+              <label>Price</label>
+              <input type="number" name="price" value="<%= service.price %>" step="0.01" required />
+            </div>
+            <div>
+              <label>Duration (minutes)</label>
+              <input type="number" name="duration_minutes" value="<%= service.duration_minutes %>" required />
+            </div>
+          </div>
+          <div style="margin-top: 16px;">
+            <label>Description</label>
+            <textarea name="description" rows="4" required><%= service.description %></textarea>
+          </div>
+          <div style="margin-top: 18px;">
+            <button type="submit">Save Changes</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
+
+
+
+

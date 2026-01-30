@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Delete Booking</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <%- include('partials/admin_nav') %>
+    <main class="page">
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Bookings</p>
+          <h1>Delete Booking</h1>
+          <p class="lead">Confirm the cancellation before removing this appointment.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="/admin/bookings">Back to Bookings</a>
+        </div>
+      </header>
+
+      <section class="page-card">
+        <% if (!canDelete) { %>
+          <p>This booking is completed and cannot be deleted.</p>
+          <div class="inline-actions" style="margin-top: 16px;">
+            <a href="/admin/bookings/<%= booking.id %>">Back to Booking Details</a>
+          </div>
+        <% } else { %>
+          <p>
+            Are you sure you want to delete booking #<%= booking.id %> for
+            "<%= booking.service_name_snapshot %>" on
+            <%= booking.requested_date %> at <%= booking.requested_time %>?
+          </p>
+          <form action="/admin/bookings/<%= booking.id %>/delete" method="POST">
+            <div class="inline-actions" style="margin-top: 16px;">
+              <button type="submit">Yes, delete</button>
+              <a href="/admin/bookings/<%= booking.id %>">Cancel</a>
+            </div>
+          </form>
+        <% } %>
+      </section>
+    </main>
+  </body>
+</html>
+
+
+
+

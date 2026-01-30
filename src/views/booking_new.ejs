@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Request a Booking</title>
+    <link rel="stylesheet" href="/css/site.css" />
+  </head>
+  <body>
+    <header class="site-topbar">
+      <div class="site-topbar__inner">
+        <div class="site-brand">
+          <div>
+            <h1>Precioso</h1>
+            <span>Facial Salon & Spa</span>
+          </div>
+        </div>
+        <div class="site-links">
+          <a href="/">Home</a>
+          <a href="/services">Services</a>
+          <a href="/branches">Locations</a>
+          <a href="/contact">Contact</a>
+          <a href="/customer/login">My Bookings</a>
+          <a class="cta-button" href="/bookings/new">Book an Appointment</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="site-hero">
+      <h2>Book With Us</h2>
+      <p>Home / Booking Form</p>
+    </section>
+
+    <main class="site-main">
+      <section class="service-card" style="margin-bottom: 24px;">
+        <h3 class="section-heading">Before you submit</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>Request-based booking</h4>
+            <p class="service-meta">Choose a preferred time and we will confirm final availability.</p>
+          </div>
+          <div class="info-card">
+            <h4>We confirm details</h4>
+            <p class="service-meta">Our team will confirm your service, timing, and any add-ons before the visit.</p>
+          </div>
+          <div class="info-card">
+            <h4>Need to reschedule?</h4>
+            <p class="service-meta">Contact your location directly and we will help adjust your appointment.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-card">
+        <h3>Fill Up Details</h3>
+        <form method="post" action="/bookings/new">
+          <div class="form-grid">
+            <div>
+              <label>Location</label>
+              <select name="branch_id" id="branchSelect" required>
+                <% branches.forEach(function(branch) { %>
+                  <option value="<%= branch.id %>" <%= Number(selectedBranchId) === Number(branch.id) ? "selected" : "" %>>
+                    <%= branch.name %>
+                  </option>
+                <% }) %>
+              </select>
+            </div>
+            <div>
+              <label>Service</label>
+              <select name="service_id" required>
+                <option value="">Select a service</option>
+                <% services.forEach(function(service) { %>
+                  <option value="<%= service.id %>"><%= service.name %></option>
+                <% }) %>
+              </select>
+            </div>
+            <div>
+              <label>Full Name</label>
+              <input type="text" name="full_name" required />
+            </div>
+            <div>
+              <label>Email</label>
+              <input type="email" name="email" required />
+            </div>
+            <div>
+              <label>Phone</label>
+              <input type="text" name="phone" required />
+            </div>
+            <div>
+              <label>Preferred Date & Time</label>
+              <input type="datetime-local" name="requested_datetime" required />
+              <p class="note">We will confirm the final time after reviewing availability.</p>
+            </div>
+          </div>
+          <div style="margin-top: 18px;">
+            <button type="submit">Submit Request</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <h4>Questions before booking?</h4>
+          <p>Contact your preferred location for help choosing a service.</p>
+        </div>
+        <div>
+          <h4>Quick links</h4>
+          <ul class="footer-links">
+            <li><a href="/services">Services</a></li>
+            <li><a href="/branches">Locations</a></li>
+            <li><a href="/customer/login">My Bookings</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Good to know</h4>
+          <p>Requests are reviewed in order and confirmed by the clinic team.</p>
+          <p class="note">Hours vary by location.</p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const branchSelect = document.getElementById("branchSelect");
+      if (branchSelect) {
+        branchSelect.addEventListener("change", (event) => {
+          const branchId = event.target.value;
+          window.location.href = `/bookings/new?branch_id=${branchId}`;
+        });
+      }
+    </script>
+  </body>
+</html>
+
+
+
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Branches</title>
+    <link rel="stylesheet" href="/css/site.css" />
+  </head>
+  <body>
+    <header class="site-topbar">
+      <div class="site-topbar__inner">
+        <div class="site-brand">
+          <div>
+            <h1>Precioso</h1>
+            <span>Facial Salon & Spa</span>
+          </div>
+        </div>
+        <div class="site-links">
+          <a href="/">Home</a>
+          <a href="/services">Services</a>
+          <a href="/branches">Locations</a>
+          <a href="/contact">Contact</a>
+          <a href="/customer/login">My Bookings</a>
+          <a class="cta-button" href="/bookings/new">Book an Appointment</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="site-hero">
+      <h2>Our Locations</h2>
+      <p>Home / Locations</p>
+    </section>
+
+    <main class="site-main">
+      <section class="service-card" style="margin-bottom: 24px;">
+        <h3 class="section-heading">Choose your nearest location</h3>
+        <p class="section-subtitle">Each location offers a unique mix of treatments and pricing.</p>
+      </section>
+      <section class="services-grid">
+        <% branches.forEach(function(branch) { %>
+          <div class="service-card">
+            <h4><%= branch.name %></h4>
+            <p class="service-meta"><%= branch.address %></p>
+            <% if (branch.phone) { %>
+              <p class="service-meta">Contact: <%= branch.phone %></p>
+            <% } %>
+            <a class="cta-button" href="/services?branch_id=<%= branch.id %>">View Services</a>
+          </div>
+        <% }) %>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <h4>Plan your visit</h4>
+          <p>View services and request a time that works for you.</p>
+        </div>
+        <div>
+          <h4>Quick links</h4>
+          <ul class="footer-links">
+            <li><a href="/services">Services</a></li>
+            <li><a href="/bookings/new">Book an Appointment</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/customer/login">My Bookings</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Need help?</h4>
+          <p>Call the location directly for the fastest response.</p>
+          <p class="note">Hours vary by location.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
+
+

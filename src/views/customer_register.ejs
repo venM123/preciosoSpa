@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Customer Register</title>
+    <link rel="stylesheet" href="/css/site.css" />
+  </head>
+  <body>
+    <header class="site-topbar">
+      <div class="site-topbar__inner">
+        <div class="site-brand">
+          <div>
+            <h1>Precioso</h1>
+            <span>Facial Salon & Spa</span>
+          </div>
+        </div>
+        <div class="site-links">
+          <a href="/">Home</a>
+          <a href="/services">Services</a>
+          <a href="/branches">Locations</a>
+          <a href="/contact">Contact</a>
+          <a href="/customer/login">My Bookings</a>
+          <a class="cta-button" href="/bookings/new">Book an Appointment</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="site-hero">
+      <h2>Create Account</h2>
+      <p>Home / Register</p>
+    </section>
+
+    <main class="site-main">
+      <section class="form-card">
+        <h3>Customer Registration</h3>
+        <% if (error) { %>
+          <p class="service-meta"><%= error %></p>
+        <% } %>
+        <form method="POST" action="/customer/register">
+          <div class="form-grid">
+            <div>
+              <label>Full Name</label>
+              <input type="text" name="full_name" required />
+            </div>
+            <div>
+              <label>Email</label>
+              <input type="email" name="email" required />
+            </div>
+            <div>
+              <label>Phone</label>
+              <input type="text" name="phone" required />
+            </div>
+            <div>
+              <label>Password</label>
+              <input type="password" name="password" required />
+            </div>
+          </div>
+          <div style="margin-top: 18px;">
+            <button type="submit">Register</button>
+            <a class="cta-button" href="/customer/login">Already have an account?</a>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
+
+
+
+

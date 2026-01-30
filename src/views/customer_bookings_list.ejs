@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="/css/site.css" />
+  </head>
+  <body>
+    <header class="site-topbar">
+      <div class="site-topbar__inner">
+        <div class="site-brand">
+          <div>
+            <h1>Precioso</h1>
+            <span>Facial Salon & Spa</span>
+          </div>
+        </div>
+        <div class="site-links">
+          <a href="/">Home</a>
+          <a href="/services">Services</a>
+          <a href="/branches">Locations</a>
+          <a href="/contact">Contact</a>
+          <a href="/bookings">My Bookings</a>
+          <a class="cta-button" href="/bookings/new">Book an Appointment</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="site-hero">
+      <h2>My Booking History</h2>
+      <p>Home / Booking History</p>
+    </section>
+
+    <main class="site-main">
+      <section class="service-card">
+        <% if (!customer) { %>
+          <p>No customer record found for that email.</p>
+          <a class="cta-button" href="/bookings">Try Again</a>
+        <% } else { %>
+          <h3>Welcome back, <%= customer.full_name %></h3>
+          <p class="service-meta">Email: <%= customer.email %></p>
+          <p class="service-meta">Status guide: Pending = awaiting confirmation, Confirmed = scheduled, Completed = done.</p>
+
+          <% if (bookings.length === 0) { %>
+            <p>No bookings found.</p>
+          <% } else { %>
+            <div class="services-grid" style="margin-top: 18px;">
+              <% bookings.forEach(b => { %>
+                <div class="service-card">
+                  <h4><%= b.service_name_snapshot %></h4>
+                  <p class="service-meta">Status: <%= b.status %></p>
+                  <p class="service-meta">Requested: <%= b.requested_date %> at <%= b.requested_time %></p>
+                  <p class="service-meta">Price: $<%= b.service_price_snapshot %></p>
+                  <a class="cta-button" href="/bookings/<%= b.id %>">View Details</a>
+                </div>
+              <% }) %>
+            </div>
+          <% } %>
+        <% } %>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <h4>Need changes?</h4>
+          <p>Contact your preferred location to reschedule or update details.</p>
+        </div>
+        <div>
+          <h4>Quick links</h4>
+          <ul class="footer-links">
+            <li><a href="/services">Services</a></li>
+            <li><a href="/branches">Locations</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/bookings">My Bookings</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Keep a record</h4>
+          <p>Save your booking details for reference.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
+
+

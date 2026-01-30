@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Booking Request Received</title>
+    <link rel="stylesheet" href="/css/site.css" />
+  </head>
+  <body>
+    <header class="site-topbar">
+      <div class="site-topbar__inner">
+        <div class="site-brand">
+          <div>
+            <h1>Precioso</h1>
+            <span>Facial Salon & Spa</span>
+          </div>
+        </div>
+        <div class="site-links">
+          <a href="/">Home</a>
+          <a href="/services">Services</a>
+          <a href="/branches">Locations</a>
+          <a href="/contact">Contact</a>
+          <a href="/customer/login">My Bookings</a>
+          <a class="cta-button" href="/bookings/new">Book an Appointment</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="site-hero">
+      <h2>Booking Confirmed</h2>
+      <p>Home / Confirmation</p>
+    </section>
+
+    <main class="site-main">
+      <section class="confirm-card">
+        <h3>Booking request received</h3>
+        <p>Thank you for choosing Precioso. Our team will review your request and confirm your appointment.</p>
+        <ul class="confirm-list">
+          <li><strong>Reference:</strong> <%= bookingId %></li>
+          <li><strong>Requested Date & Time:</strong> <%= requested_datetime %></li>
+          <li><strong>Full Name:</strong> <%= full_name %></li>
+          <li><strong>Email:</strong> <%= email %></li>
+          <li><strong>Phone:</strong> <%= phone %></li>
+          <% if (branchName) { %>
+            <li><strong>Location:</strong> <%= branchName %></li>
+          <% } %>
+        </ul>
+        <p class="service-meta">This request is pending confirmation. We will contact you if we need any additional details.</p>
+        <p class="service-meta">
+          Want to track your appointments? <a href="/customer/login">Log in</a>
+          or <a href="/customer/reset">reset your password</a> to access your booking history.
+        </p>
+        <div style="margin-top: 18px;">
+          <a class="cta-button" href="/services">Back to Services</a>
+          <a class="cta-button" href="/customer/login">View My Bookings</a>
+          <a class="cta-button" href="/bookings/new">Request another booking</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <h4>Need to make changes?</h4>
+          <p>Contact your preferred location and we will help adjust your appointment.</p>
+        </div>
+        <div>
+          <h4>Quick links</h4>
+          <ul class="footer-links">
+            <li><a href="/branches">Locations</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/customer/login">My Bookings</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Reference</h4>
+          <p>Keep your reference number handy when contacting us.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
+
+

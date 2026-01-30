@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Services</title>
+    <link rel="stylesheet" href="/css/site.css" />
+  </head>
+  <body>
+    <header class="site-topbar">
+      <div class="site-topbar__inner">
+        <div class="site-brand">
+          <div>
+            <h1>Precioso</h1>
+            <span>Facial Salon & Spa</span>
+          </div>
+        </div>
+        <div class="site-links">
+          <a href="/">Home</a>
+          <a href="/services">Services</a>
+          <a href="/branches">Locations</a>
+          <a href="/contact">Contact</a>
+          <a href="/customer/login">My Bookings</a>
+          <a class="cta-button" href="/bookings/new">Book an Appointment</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="site-hero">
+      <h2>Our Services</h2>
+      <p>Home / Services</p>
+    </section>
+
+    <main class="site-main">
+      <section class="form-card" style="margin-bottom: 24px;">
+        <h3>Select Location</h3>
+        <p class="service-meta">Prices and availability are shown for the location you select.</p>
+        <form method="GET" action="/services">
+          <div class="form-grid">
+            <div>
+              <label>Location</label>
+              <select name="branch_id" onchange="this.form.submit()">
+                <% branches.forEach(function(branch) { %>
+                  <option value="<%= branch.id %>" <%= Number(selectedBranchId) === Number(branch.id) ? "selected" : "" %>>
+                    <%= branch.name %>
+                  </option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section class="services-grid">
+        <% services.forEach(function(service) { %>
+          <div class="service-card">
+            <% if (service.image_url) { %>
+              <img src="<%= service.image_url %>" alt="Service image" style="width: 100%; height: 180px; object-fit: cover; border-radius: 16px; margin-bottom: 12px;" />
+            <% } %>
+            <h4><%= service.name %></h4>
+            <p class="service-meta">Category: <%= service.category %></p>
+            <% if (service.promo_set) { %>
+              <p class="service-meta">Promo: <%= service.promo_set %></p>
+            <% } %>
+            <p class="service-meta">Duration: <%= service.duration_minutes %> minutes</p>
+            <p class="service-meta">Price: $<%= service.price %></p>
+            <p><%= service.description %></p>
+            <a class="cta-button" href="/bookings/new?branch_id=<%= selectedBranchId %>">Book this service</a>
+          </div>
+        <% }) %>
+      </section>
+
+      <section class="service-card" style="margin-top: 24px;">
+        <h3 class="section-heading">Not sure which service to choose?</h3>
+        <p class="section-subtitle">We are happy to help you decide based on your goals, schedule, and comfort level.</p>
+        <div class="info-grid" style="margin-top: 18px;">
+          <div class="info-card">
+            <h4>Share your goal</h4>
+            <p class="service-meta">Tell us what you want to improve and we can recommend a treatment plan.</p>
+          </div>
+          <div class="info-card">
+            <h4>Ask about prep</h4>
+            <p class="service-meta">We will let you know anything to avoid or prepare for before your visit.</p>
+          </div>
+          <div class="info-card">
+            <h4>Confirm details</h4>
+            <p class="service-meta">We will confirm timing, pricing, and any add-ons before your appointment.</p>
+          </div>
+        </div>
+        <div style="margin-top: 18px;">
+          <a class="cta-button" href="/contact">Contact Us</a>
+          <a class="cta-button" href="/bookings/new?branch_id=<%= selectedBranchId %>">Request a Booking</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <h4>Visit the spa</h4>
+          <p>See all locations to find the closest one.</p>
+        </div>
+        <div>
+          <h4>Quick links</h4>
+          <ul class="footer-links">
+            <li><a href="/branches">Locations</a></li>
+            <li><a href="/bookings/new">Book an Appointment</a></li>
+            <li><a href="/customer/login">My Bookings</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Questions?</h4>
+          <p>Contact your preferred location for the fastest response.</p>
+          <p class="note">Hours vary by location.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
+
+

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Delete Service</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <%- include('partials/admin_nav') %>
+    <main class="page">
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Services</p>
+          <h1>Delete Service</h1>
+          <p class="lead">Confirm this action before removing a service from the catalog.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="/admin/services">Back to Services</a>
+        </div>
+      </header>
+
+      <section class="page-card">
+        <p>Are you sure you want to delete this service?</p>
+        <p class="badge"><%= service.name %></p>
+
+        <form method="POST" action="/admin/services/<%= service.id %>/delete">
+          <div class="inline-actions" style="margin-top: 16px;">
+            <button type="submit">Yes, Delete</button>
+            <a href="/admin/services">Cancel</a>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
+
+
+
+

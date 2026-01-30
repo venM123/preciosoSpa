@@ -1,0 +1,150 @@
+Setup MariaDB DB with Docker (Windows PowerShell, exact)
+1) Install / confirm Docker Desktop
+
+Install Docker Desktop (Windows).
+
+Open Docker Desktop and make sure it says Running.
+
+Test Docker works
+
+Open PowerShell and run:
+
+docker --version
+docker compose version
+
+
+Both must return versions.
+
+2) Go to your project folder (important)
+
+This must be the folder where your docker-compose.yml will live.
+
+Example:
+
+cd C:\xampp\htdocs\ladyboss-clinic-booking
+
+3) Create docker-compose.yml (exact file + content)
+
+Create a file named exactly:
+
+C:\xampp\htdocs\ladyboss-clinic-booking\docker-compose.yml
+
+
+Paste this exact:
+
+services:
+  mariadb:
+    image: mariadb:11
+    container_name: ladyboss_mariadb
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpassword
+      MARIADB_DATABASE: ladyboss_booking
+      MARIADB_USER: ladyboss_user
+      MARIADB_PASSWORD: strongpassword
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+volumes:
+  mariadb_data:
+
+
+✅ Note: Do NOT add version: at the top (Compose v2 warns it’s obsolete).
+
+4) Start the DB container (exact)
+
+From the same folder (where compose file is):
+
+docker compose up -d
+
+Confirm it’s running
+docker ps
+
+
+You must see ladyboss_mariadb with Up.
+
+5) Hard-proof the DB is accepting queries (exact)
+
+Run:
+
+docker exec -it ladyboss_mariadb mariadb -u root -prootpassword -e "SELECT 1 AS ok;"
+
+
+Expected output:
+
+ok
+1
+
+
+If this works, the DB is truly alive.
+
+6) Create your .env for Node (exact)
+
+Create:
+
+C:\xampp\htdocs\ladyboss-clinic-booking\.env
+
+
+Paste:
+
+PORT=3000
+
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER=ladyboss_user
+DB_PASSWORD=strongpassword
+DB_NAME=ladyboss_booking
+
+7) Apply SQL migration file (PowerShell-safe way)
+7.1 Put your SQL file here
+
+Example:
+
+db\migrations\001_init.sql
+
+
+Full path example:
+
+C:\xampp\htdocs\ladyboss-clinic-booking\db\migrations\001_init.sql
+
+7.2 Run it (PowerShell DOES NOT support < file.sql)
+
+Use this exact PowerShell command:
+
+Get-Content .\db\migrations\001_init.sql | docker exec -i ladyboss_mariadb mariadb -u root -prootpassword ladyboss_booking
+
+
+✅ No output = success.
+
+7.3 Verify tables exist
+docker exec -it ladyboss_mariadb mariadb -u root -prootpassword -e "SHOW TABLES;" ladyboss_booking
+
+
+You should see your tables listed.
+
+Common errors (and exact fixes)
+Error: no configuration file provided: not found
+
+Cause: You ran compose in the wrong folder.
+
+Fix:
+
+cd C:\xampp\htdocs\ladyboss-clinic-booking
+docker compose up -d
+
+Error: PowerShell says < is reserved for future use
+
+Cause: You used Linux redirection <.
+
+Fix: Use Get-Content ... | docker exec -i ... (shown above).
+
+Error: Access denied / wrong credentials after changing compose env
+
+Cause: MariaDB volume persists old credentials.
+
+Fix (this deletes DB data and recreates fresh):
+
+docker compose down -v
+docker compose up -d

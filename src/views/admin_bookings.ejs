@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin - Bookings</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <%- include('partials/admin_nav') %>
+    <main class="page">
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Bookings</p>
+          <h1>Appointments</h1>
+          <p class="lead">Review and manage every appointment request with clarity and care.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="/admin/services">Manage Services</a>
+        </div>
+      </header>
+
+      <section class="page-card">
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Service</th>
+                <th>Requested Date</th>
+                <th>Requested Time</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% bookings.forEach(booking => { %>
+                <tr>
+                  <td><%= booking.id %></td>
+                  <td><%= booking.customer_name %></td>
+                  <td><%= booking.customer_email %></td>
+                  <td><%= booking.service_name %></td>
+                  <td><%= booking.requested_date %></td>
+                  <td><%= booking.requested_time %></td>
+                  <td><span class="badge"><%= booking.status %></span></td>
+                  <td><a href="/admin/bookings/<%= booking.id %>">View</a></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+
+
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Precioso</p>
+          <h1>Admin Login</h1>
+          <p class="lead">Secure access to manage services, bookings, and reports.</p>
+        </div>
+      </header>
+
+      <section class="page-card">
+        <form method="POST" action="/admin/login">
+          <div class="form-grid">
+            <div>
+              <label>Email</label>
+              <input type="email" name="email" required />
+            </div>
+            <div>
+              <label>Password</label>
+              <input type="password" name="password" required />
+            </div>
+          </div>
+          <div style="margin-top: 18px;">
+            <button type="submit">Login</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
+
+
+
+

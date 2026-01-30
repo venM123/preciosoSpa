@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin - Services</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <%- include('partials/admin_nav') %>
+    <main class="page">
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Admin</p>
+          <h1>Services</h1>
+          <p class="lead">Curate every treatment detail with a refined, effortless workflow.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="/admin/services/new">New Service</a>
+          <a class="btn" href="/admin/bookings">Manage Bookings</a>
+        </div>
+      </header>
+
+      <section class="page-card">
+        <div class="table-meta">
+          <span>Total services: <%= services.length %></span>
+          <span class="badge">Active catalog</span>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Duration</th>
+                <th>Created</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (const s of services) { %>
+                <tr>
+                  <td><%= s.id %></td>
+                  <td>
+                    <% if (s.image_url) { %>
+                      <img src="<%= s.image_url %>" alt="Service image" style="width: 60px; height: auto; border-radius: 10px;" />
+                    <% } else { %>
+                      —
+                    <% } %>
+                  </td>
+                  <td><%= s.name %></td>
+                  <td><%= s.category %></td>
+                  <td><%= s.description %></td>
+                  <td>$<%= s.price %></td>
+                  <td><%= s.duration_minutes %> min</td>
+                  <td><%= s.created_at %></td>
+                  <td class="inline-actions">
+                    <a href="/admin/services/<%= s.id %>/edit">Edit</a>
+                    <a href="/admin/services/<%= s.id %>/delete">Delete</a>
+                  </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+
+
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Bookings</title>
+  </head>
+  <body>
+    <h1>My Bookings</h1>
+
+    <% if (!customer) { %>
+      <p>No customer found with that email.</p>
+      <a href="/bookings">Try again</a>
+    <% } else { %>
+      <p><strong>Name:</strong> <%= customer.full_name %></p>
+
+      <% if (bookings.length === 0) { %>
+        <p>No bookings found.</p>
+      <% } else { %>
+        <table border="1" cellpadding="8">
+          <tr>
+            <th>ID</th>
+            <th>Service</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Price</th>
+          </tr>
+
+          <% bookings.forEach(b => { %>
+            <tr>
+              <td><%= b.id %></td>
+              <td><%= b.service_name_snapshot %></td>
+              <td><%= b.requested_date %></td>
+              <td><%= b.requested_time %></td>
+              <td><%= b.status %></td>
+              <td>$<%= b.service_price_snapshot %></td>
+            </tr>
+          <% }) %>
+        </table>
+      <% } %>
+    <% } %>
+
+    <br />
+    <a href="/services">Back to Services</a>
+  </body>
+</html>

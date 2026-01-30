@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Find My Bookings</title>
+    <link rel="stylesheet" href="/css/site.css" />
+  </head>
+  <body>
+    <header class="site-topbar">
+      <div class="site-topbar__inner">
+        <div class="site-brand">
+          <div>
+            <h1>Precioso</h1>
+            <span>Facial Salon & Spa</span>
+          </div>
+        </div>
+        <div class="site-links">
+          <a href="/">Home</a>
+          <a href="/services">Services</a>
+          <a href="/branches">Locations</a>
+          <a href="/contact">Contact</a>
+          <a href="/customer/login">My Bookings</a>
+          <a class="cta-button" href="/bookings/new">Book an Appointment</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="site-hero">
+      <h2>My Booking History</h2>
+      <p>Home / Bookings</p>
+    </section>
+
+    <main class="site-main">
+      <section class="form-card">
+        <h3>Find Your Bookings</h3>
+        <p class="service-meta">Enter the email used when you requested your appointment.</p>
+        <form method="POST" action="/bookings">
+          <div class="form-grid">
+            <div>
+              <label>Email address</label>
+              <input type="email" name="email" required />
+            </div>
+          </div>
+          <div style="margin-top: 18px;">
+            <button type="submit">View Bookings</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <h4>Need help?</h4>
+          <p>Contact your preferred location if you cannot locate your booking.</p>
+        </div>
+        <div>
+          <h4>Quick links</h4>
+          <ul class="footer-links">
+            <li><a href="/services">Services</a></li>
+            <li><a href="/branches">Locations</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/customer/login">My Bookings</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Good to know</h4>
+          <p>Bookings are confirmed by the clinic team before your visit.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
+
+

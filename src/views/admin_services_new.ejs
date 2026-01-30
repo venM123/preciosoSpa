@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin - New Service</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <%- include('partials/admin_nav') %>
+    <main class="page">
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Services</p>
+          <h1>Create New Service</h1>
+          <p class="lead">Add a new signature treatment with premium details and pricing.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="/admin/services">Back to Services</a>
+        </div>
+      </header>
+
+      <section class="page-card">
+        <form method="POST" action="/admin/services/new" enctype="multipart/form-data">
+          <div class="form-grid">
+            <div>
+              <label>Service Name</label>
+              <input type="text" name="name" required />
+            </div>
+            <div>
+              <label>Category</label>
+              <input type="text" name="category" required />
+            </div>
+            <div>
+              <label>Service Image</label>
+              <input type="file" name="image" accept="image/*" />
+            </div>
+            <div>
+              <label>Price</label>
+              <input type="number" name="price" step="0.01" min="0" required />
+            </div>
+            <div>
+              <label>Duration (minutes)</label>
+              <input type="number" name="duration_minutes" min="1" required />
+            </div>
+          </div>
+          <div style="margin-top: 16px;">
+            <label>Description</label>
+            <textarea name="description" rows="4" required></textarea>
+          </div>
+          <div style="margin-top: 18px;">
+            <button type="submit">Create Service</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
+
+
+
+

@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin - Reports</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <%- include('partials/admin_nav') %>
+    <main class="page">
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Insights</p>
+          <h1>Reports</h1>
+          <p class="lead">Track performance, demand, and revenue at a glance.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="/admin/bookings">View Bookings</a>
+        </div>
+      </header>
+
+      <section class="page-card">
+        <div class="card-grid">
+          <div class="card">
+            <h3>Total Bookings</h3>
+            <p><%= revenue.total_bookings || 0 %></p>
+          </div>
+          <div class="card">
+            <h3>Confirmed Revenue</h3>
+            <p>$<%= revenue.confirmed_revenue || 0 %></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-card">
+        <h2>Bookings by Status</h2>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% statusRows.forEach(row => { %>
+                <tr>
+                  <td><%= row.status %></td>
+                  <td><%= row.count %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="page-card">
+        <h2>Top Services</h2>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Total Bookings</th>
+                <th>Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% serviceRows.forEach(row => { %>
+                <tr>
+                  <td><%= row.service %></td>
+                  <td><%= row.total %></td>
+                  <td>$<%= row.revenue %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="page-card">
+        <h2>Branch Performance</h2>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Branch</th>
+                <th>Total Bookings</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% branchRows.forEach(row => { %>
+                <tr>
+                  <td><%= row.branch %></td>
+                  <td><%= row.total %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+
+
+

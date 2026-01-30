@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Booking Detail</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <%- include('partials/admin_nav') %>
+    <main class="page">
+      <header class="page-hero">
+        <div>
+          <p class="eyebrow">Bookings</p>
+          <h1>Booking Detail</h1>
+          <p class="lead">Keep every appointment aligned with client expectations.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="/admin/bookings">Back to Bookings</a>
+        </div>
+      </header>
+
+      <section class="page-card">
+        <p><strong>Booking ID:</strong> <%= booking.id %></p>
+        <div class="status-box">
+          Status: <%= booking.status %>
+        </div>
+
+        <div class="section">
+          <h2>Update Status</h2>
+          <form method="POST" action="/admin/bookings/<%= booking.id %>/status">
+            <div class="inline-actions">
+              <select name="status" required>
+                <option value="REQUESTED">REQUESTED</option>
+                <option value="CONFIRMED">CONFIRMED</option>
+                <option value="CANCELLED">CANCELLED</option>
+              </select>
+              <button type="submit">Update Status</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="section">
+          <h2>Add Interaction</h2>
+          <form method="POST" action="/admin/bookings/<%= booking.id %>/interactions">
+            <div class="form-grid">
+              <div>
+                <label>Channel</label>
+                <select name="channel" required>
+                  <option value="PHONE">PHONE</option>
+                  <option value="EMAIL">EMAIL</option>
+                  <option value="CONSULTATION">CONSULTATION</option>
+                </select>
+              </div>
+              <div>
+                <label>Notes</label>
+                <textarea name="notes" rows="4" required></textarea>
+              </div>
+            </div>
+            <div style="margin-top: 16px;">
+              <button type="submit">Add Interaction</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="section">
+          <h2>Interaction History</h2>
+          <% interactions.forEach(i => { %>
+            <p>
+              <strong><%= i.channel %></strong> -- <%= i.notes %><br />
+              <small><%= i.created_at %></small>
+            </p>
+            <hr />
+          <% }) %>
+        </div>
+
+        <div class="section">
+          <h2>Customer</h2>
+          <p><strong>Name:</strong> <%= booking.customer_name %></p>
+          <p><strong>Email:</strong> <%= booking.customer_email %></p>
+          <p><strong>Phone:</strong> <%= booking.customer_phone %></p>
+        </div>
+
+        <div class="section">
+          <h2>Service (Snapshot)</h2>
+          <p><strong>Name:</strong> <%= booking.service_name_snapshot %></p>
+          <p><strong>Price:</strong> $<%= booking.service_price_snapshot %></p>
+          <p><strong>Duration:</strong> <%= booking.service_duration_snapshot %> minutes</p>
+        </div>
+
+        <div class="section">
+          <h2>Request</h2>
+          <p><strong>Date:</strong> <%= booking.requested_date %></p>
+          <p><strong>Time:</strong> <%= booking.requested_time %></p>
+        </div>
+
+        <div class="section">
+          <h2>Branch</h2>
+          <p><%= booking.branch_name %></p>
+        </div>
+
+        <p class="meta">
+          <strong>Created At:</strong> <%= booking.created_at %>
+        </p>
+
+        <a class="back-link" href="/admin/bookings"><- Back to Bookings</a>
+      </section>
+    </main>
+  </body>
+</html>
+
+
+
+
