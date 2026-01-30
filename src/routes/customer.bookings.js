@@ -199,6 +199,7 @@ router.get('/bookings/new', async(req,res) =>{
     );
 
     const selectedBranchId = Number(req.query.branch_id) || (branches[0] ? branches[0].id : null);
+    const selectedServiceId = Number(req.query.service_id) || null;
 
     let services = [];
     if (selectedBranchId) {
@@ -215,10 +216,28 @@ router.get('/bookings/new', async(req,res) =>{
       services = rows;
     }
 
+    let customerDefaults = { full_name: "", email: "", phone: "" };
+    if (req.session && req.session.customerId) {
+      const [customerRows] = await pool.query(
+        `
+        SELECT full_name, email, phone
+        FROM customers
+        WHERE id = ?
+        LIMIT 1
+        `,
+        [req.session.customerId]
+      );
+      if (customerRows.length) {
+        customerDefaults = customerRows[0];
+      }
+    }
+
     return res.render('booking_new', {
       services,
       branches,
-      selectedBranchId
+      selectedBranchId,
+      selectedServiceId,
+      customerDefaults
     });
   }catch(error){
     console.error('Failed to load services for booking',error);

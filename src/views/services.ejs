@@ -65,7 +65,7 @@
             <p class="service-meta">Duration: <%= service.duration_minutes %> minutes</p>
             <p class="service-meta">Price: $<%= service.price %></p>
             <p><%= service.description %></p>
-            <a class="cta-button" href="/bookings/new?branch_id=<%= selectedBranchId %>">Book this service</a>
+            <a class="cta-button" href="/bookings/new?branch_id=<%= selectedBranchId %>&service_id=<%= service.id %>">Book this service</a>
           </div>
         <% }) %>
       </section>
