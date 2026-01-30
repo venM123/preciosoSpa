@@ -20,7 +20,13 @@
           <a href="/services">Services</a>
           <a href="/branches">Locations</a>
           <a href="/contact">Contact</a>
-          <a href="/customer/login">My Bookings</a>
+          <% if (customerLoggedIn) { %>
+            <a href="/bookings">My Bookings</a>
+            <a href="/customer/logout">Logout</a>
+          <% } else { %>
+            <a href="/customer/login">Login</a>
+            <a href="/customer/register">Register</a>
+          <% } %>
           <a class="cta-button" href="/bookings/new">Book an Appointment</a>
         </div>
       </div>
@@ -46,13 +52,23 @@
           <% } %>
         </ul>
         <p class="service-meta">This request is pending confirmation. We will contact you if we need any additional details.</p>
-        <p class="service-meta">
-          Want to track your appointments? <a href="/customer/login">Log in</a>
-          or <a href="/customer/reset">reset your password</a> to access your booking history.
-        </p>
+        <% if (customerLoggedIn) { %>
+          <p class="service-meta">
+            Track your appointments in <a href="/bookings">My Bookings</a>.
+          </p>
+        <% } else { %>
+          <p class="service-meta">
+            Want to track your appointments? <a href="/customer/login">Log in</a>
+            or <a href="/customer/reset">reset your password</a> to access your booking history.
+          </p>
+        <% } %>
         <div style="margin-top: 18px;">
           <a class="cta-button" href="/services">Back to Services</a>
-          <a class="cta-button" href="/customer/login">View My Bookings</a>
+          <% if (customerLoggedIn) { %>
+            <a class="cta-button" href="/bookings">View My Bookings</a>
+          <% } else { %>
+            <a class="cta-button" href="/customer/login">View My Bookings</a>
+          <% } %>
           <a class="cta-button" href="/bookings/new">Request another booking</a>
         </div>
       </section>
@@ -69,7 +85,13 @@
           <ul class="footer-links">
             <li><a href="/branches">Locations</a></li>
             <li><a href="/contact">Contact</a></li>
-            <li><a href="/customer/login">My Bookings</a></li>
+            <% if (customerLoggedIn) { %>
+              <li><a href="/bookings">My Bookings</a></li>
+              <li><a href="/customer/logout">Logout</a></li>
+            <% } else { %>
+              <li><a href="/customer/login">Login</a></li>
+              <li><a href="/customer/register">Register</a></li>
+            <% } %>
           </ul>
         </div>
         <div>

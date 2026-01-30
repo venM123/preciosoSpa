@@ -30,6 +30,11 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  res.locals.customerLoggedIn = Boolean(req.session && req.session.customerId);
+  res.locals.customerName = req.session && req.session.customerName ? req.session.customerName : null;
+  next();
+});
 
 
 

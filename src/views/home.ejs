@@ -20,7 +20,13 @@
           <a href="/services">Services</a>
           <a href="/branches">Locations</a>
           <a href="/contact">Contact</a>
-          <a href="/customer/login">My Bookings</a>
+          <% if (customerLoggedIn) { %>
+            <a href="/bookings">My Bookings</a>
+            <a href="/customer/logout">Logout</a>
+          <% } else { %>
+            <a href="/customer/login">Login</a>
+            <a href="/customer/register">Register</a>
+          <% } %>
           <a class="cta-button" href="/bookings/new">Book an Appointment</a>
         </div>
       </div>
@@ -44,8 +50,13 @@
         <div class="form-grid" style="margin-top: 18px;">
           <a class="cta-button" href="/services">View Services</a>
           <a class="cta-button" href="/bookings/new">Book an Appointment</a>
-          <a class="cta-button" href="/customer/login">View My Bookings</a>
-          <a class="cta-button" href="/customer/register">Create Customer Account</a>
+          <% if (customerLoggedIn) { %>
+            <a class="cta-button" href="/bookings">View My Bookings</a>
+            <a class="cta-button" href="/customer/logout">Logout</a>
+          <% } else { %>
+            <a class="cta-button" href="/customer/login">Login</a>
+            <a class="cta-button" href="/customer/register">Create Customer Account</a>
+          <% } %>
           <a class="cta-button" href="/contact">Contact Us</a>
         </div>
       </section>
@@ -91,7 +102,13 @@
             <li><a href="/services">Services</a></li>
             <li><a href="/branches">Locations</a></li>
             <li><a href="/bookings/new">Book an Appointment</a></li>
-            <li><a href="/customer/login">My Bookings</a></li>
+            <% if (customerLoggedIn) { %>
+              <li><a href="/bookings">My Bookings</a></li>
+              <li><a href="/customer/logout">Logout</a></li>
+            <% } else { %>
+              <li><a href="/customer/login">Login</a></li>
+              <li><a href="/customer/register">Register</a></li>
+            <% } %>
           </ul>
         </div>
         <div>
