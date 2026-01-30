@@ -49,7 +49,7 @@
             </div>
             <div>
               <label>Phone</label>
-              <input type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[0-9+()\\s-]{7,20}" title="Use 7-20 digits and basic symbols (+, -, spaces, parentheses)." required />
+              <input type="tel" name="phone" id="phoneInput" autocomplete="tel" inputmode="tel" pattern="[0-9+()\\s-]{7,20}" title="Use 7-20 digits and basic symbols (+, -, spaces, parentheses)." required />
             </div>
             <div>
               <label>Password</label>
@@ -63,6 +63,14 @@
         </form>
       </section>
     </main>
+    <script>
+      const phoneInput = document.getElementById("phoneInput");
+      if (phoneInput) {
+        phoneInput.addEventListener("input", () => {
+          phoneInput.value = phoneInput.value.replace(/[^0-9+()\s-]/g, "");
+        });
+      }
+    </script>
   </body>
 </html>
 
